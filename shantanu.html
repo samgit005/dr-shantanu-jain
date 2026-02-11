@@ -730,47 +730,56 @@
 
         <div class="appointment-form">
           <h3 style="margin-bottom: 20px; color: var(--green);">Appointment Request</h3>
-          <form id="appointmentForm">
+          
+          <!-- CONNECTED FORM -->
+          <form id="appointmentForm"
+                action="https://docs.google.com/forms/d/e/1FAIpQLSc8uPsA2tVE143oFxzAjYE_aLN5P0e4JsUwn-eY2JQD_FUmRw/formResponse"
+                method="POST"
+                target="hidden_iframe"
+                onsubmit="submitted=true; showSuccess();">
+
             <div class="form-group">
               <label for="name">Full Name</label>
-              <input type="text" id="name" name="name" required />
+              <input type="text" id="name" name="entry.2005620554" required />
             </div>
 
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" required />
+              <input type="email" id="email" name="entry.1045781291" required />
             </div>
 
             <div class="form-group">
               <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" name="phone" required />
+              <input type="tel" id="phone" name="entry.1166974658" required />
             </div>
 
             <div class="form-group">
               <label for="consultation">Consultation Type</label>
-              <select id="consultation" name="consultation">
-                <option value="online">Online Consultation</option>
-                <option value="clinic">In-Clinic Visit</option>
+              <select id="consultation" name="entry.839337160">
+                <option value="Online Consultation">Online Consultation</option>
+                <option value="In-Clinic Visit">In-Clinic Visit</option>
               </select>
             </div>
 
             <div class="form-group">
               <label for="date">Preferred Date</label>
-              <input type="date" id="date" name="date" required />
+              <input type="date" id="date" name="entry.1065046570" required />
             </div>
 
             <div class="form-group">
               <label for="time">Preferred Time</label>
-              <input type="time" id="time" name="time" required />
+              <input type="time" id="time" name="entry.1163303835" required />
             </div>
 
             <div class="form-group">
               <label for="message">Health Concern / Message</label>
-              <textarea id="message" name="message" placeholder="Briefly describe your health issue..."></textarea>
+              <textarea id="message" name="entry.839337161" placeholder="Briefly describe your health issue..."></textarea>
             </div>
 
             <button type="submit">Submit Appointment Request</button>
           </form>
+
+          <iframe name="hidden_iframe" style="display:none;"></iframe>
         </div>
       </div>
     </div>
@@ -869,7 +878,6 @@
       }, 4500);
     });
 
-    // Custom alert functions
     function showAlert(title, message, icon = "🌿") {
       document.getElementById('alertTitle').textContent = title;
       document.getElementById('alertMessage').textContent = message;
@@ -881,19 +889,14 @@
       document.getElementById('customAlert').classList.remove('active');
     }
 
-    // Handle appointment form submission
-    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name = this.name.value;
-
+    function showSuccess() {
+      const name = document.getElementById('name').value;
       showAlert(
         "Appointment Submitted 🌿",
         `Thank you, ${name}! Your appointment request has been received.\nWe will contact you shortly.`,
         "✅"
       );
-
-      this.reset();
-    });
+    }
   </script>
 
 </body>
